@@ -5,20 +5,15 @@ import ar.com.ucema.ia.chess.model.ChessCell;
 import ar.com.ucema.ia.chess.model.Color;
 import ar.com.ucema.ia.chess.model.xml.XMLConstants;
 
+public class Rook extends ChessPiece {
 
-/**
- *  
- * @author Matías Suárez
- */
-public class Pawn extends ChessPiece {
-
-	public Pawn(Color color) {
+	public Rook(Color color) {
 		super(color);
 	}
-	
+
 	@Override
-	public String toString() {
-		return this.getColor() + " Pawn";
+	public boolean canMove(ChessBoard board) {
+		return false;
 	}
 
 	@Override
@@ -32,12 +27,8 @@ public class Pawn extends ChessPiece {
 	}
 
 	@Override
-	public boolean canMove(ChessBoard board) {
-		return false;
+	public String getPieceNameXMLTag() {
+		return XMLConstants.TAG_ROOK;
 	}
 
-	@Override
-	public String getPieceNameXMLTag() {
-		return XMLConstants.TAG_PAWN;
-	}
 }

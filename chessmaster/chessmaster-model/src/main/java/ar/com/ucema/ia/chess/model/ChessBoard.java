@@ -3,6 +3,8 @@ package ar.com.ucema.ia.chess.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.dom4j.Element;
+
 import ar.com.ucema.ia.chess.model.exceptions.ChessCellNonExistentException;
 import ar.com.ucema.ia.chess.model.pieces.ChessPiece;
 import ar.com.ucema.ia.chess.model.pieces.Pawn;
@@ -12,7 +14,7 @@ import ar.com.ucema.ia.chess.model.pieces.Pawn;
  * 
  * @author ejadib
  */
-public class ChessBoard {
+public class ChessBoard implements Parseable {
 	private List<ChessCell> cells;
 
 	public ChessBoard() {
@@ -73,5 +75,15 @@ public class ChessBoard {
 	public void removePieceAt(String column, Integer row) {
 		ChessCell cell = getChessCellAt(column, row);
 		cell.setPiece(null);
+	}
+
+	public Object fromXML(Element e) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Element toXML(Element root) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

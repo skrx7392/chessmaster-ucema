@@ -1,5 +1,7 @@
 package ar.com.ucema.ia.chess.model;
 
+import org.dom4j.Element;
+
 import ar.com.ucema.ia.chess.model.pieces.ChessPiece;
 
 /**
@@ -7,7 +9,7 @@ import ar.com.ucema.ia.chess.model.pieces.ChessPiece;
  * 
  * @author ejadib
  */
-public class ChessCell {
+public class ChessCell implements Parseable {
 	private String column;
 	private Integer row;
 	private ChessPiece piece;
@@ -82,6 +84,16 @@ public class ChessCell {
 		} else if (!row.equals(other.row))
 			return false;
 		return true;
+	}
+
+	public Object fromXML(Element e) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Element toXML(Element root) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
