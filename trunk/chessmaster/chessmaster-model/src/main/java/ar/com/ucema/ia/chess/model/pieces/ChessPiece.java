@@ -1,16 +1,21 @@
 package ar.com.ucema.ia.chess.model.pieces;
 
+import org.dom4j.Element;
+
 import ar.com.ucema.ia.chess.model.ChessBoard;
 import ar.com.ucema.ia.chess.model.ChessCell;
 import ar.com.ucema.ia.chess.model.Color;
+import ar.com.ucema.ia.chess.model.Parseable;
+import ar.com.ucema.ia.chess.model.xml.XMLConstants;
 
 /**
  * Defines the basic behavior for all chess pieces.
  * 
  * @author ejadib
  */
-public abstract class ChessPiece {
+public abstract class ChessPiece implements Parseable {
 	private Color color;
+	private Integer id;
 	
 	public ChessPiece(Color color) {
 		this.setColor(color);
@@ -37,6 +42,22 @@ public abstract class ChessPiece {
 	 */
 	public abstract boolean canMove(ChessBoard board);
 	
+	/**
+	 * Returns the piece xml tag.
+	 * @return
+	 */
+	public abstract String getPieceNameXMLTag();
+
+	public Element toXML(Element root) {
+		Element e = root.addElement(getPieceNameXMLTag()).addAttribute(XMLConstants.COLOR_ATTRIBUTE, getColor().toString());
+		return e;
+	}
+	
+	public Object fromXML(Element e) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	public Color getColor() {
 		return color;
 	}
@@ -44,4 +65,38 @@ public abstract class ChessPiece {
 	private void setColor(Color color) {
 		this.color = color;
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((color == null) ? 0 : color.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof ChessPiece))
+			return false;
+		ChessPiece other = (ChessPiece) obj;
+		if (color == null) {
+			if (other.color != null)
+				return false;
+		} else if ( (!color.equals(other.color)) && (getPieceNameXMLTag().equals(other.getPieceNameXMLTag())) )
+			return false;
+		return true;
+	}
+	
 }
