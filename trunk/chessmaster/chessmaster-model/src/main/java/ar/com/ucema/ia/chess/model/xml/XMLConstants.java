@@ -15,10 +15,16 @@ public class XMLConstants {
 	public static final String TAG_QUEEN = "queen";
 	public static final String TAG_KING = "king";
 	public static final String TAG_CHESS_PIECE = "chessPiece";
+	public static final String TAG_CHESS_BOARD = "chessBoard";
 	
-	public static final String ID_ATTRIBUTE = "id";
-	public static final String COLOR_ATTRIBUTE = "color";
 	public static final String COLOR_BLACK = "black";
 	public static final String COLOR_WHITE = "white";
+	
+	public static final String ATTRIBUTE_ID = "id";
+	public static final String ATTRIBUTE_COLOR = "color";
+	public static final String ATTRIBUTE_ROW = "row";
+	public static final String ATTRIBUTE_COLUMN = "column";
+	
+
 	
 }
