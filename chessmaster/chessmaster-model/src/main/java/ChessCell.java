@@ -1,0 +1,52 @@
+/**
+ * Defines the cell of a chess board.
+ * 
+ * @author ejadib
+ */
+public class ChessCell {
+
+		private String column;
+		private Integer row;
+		private ChessPiece piece;
+		
+		public ChessCell(String column, Integer row, ChessPiece piece) {
+			this.setColumn(column);
+			this.setRow(row);
+			this.setPiece(piece);
+		}
+		
+		public ChessCell(String column, Integer row) {
+			this.setColumn(column);
+			this.setRow(row);
+		}
+		
+		public String getColumn() {
+			return column;
+		}
+		
+		private void setColumn(String column) {
+			this.column = column;
+		}
+		
+		public Integer getRow() {
+			return row;
+		}
+		
+		private void setRow(Integer row) {
+			this.row = row;
+		}
+		
+		public ChessPiece getPiece() {
+			return piece;
+		}
+		
+		public void setPiece(ChessPiece piece) {
+			this.piece = piece;
+		}
+		
+		@Override
+		public String toString() {
+			// TODO: check null the piece.
+			return  column + row + ":" + piece.toString();
+		}
+}
