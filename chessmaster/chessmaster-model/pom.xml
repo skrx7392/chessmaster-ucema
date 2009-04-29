@@ -12,7 +12,47 @@
   				<groupId>junit</groupId>
   				<artifactId>junit</artifactId>
   				<version>4.4</version>
-  				<scope>compile</scope>
+  		</dependency>
+  		<dependency>
+  				<groupId>dom4j</groupId>
+  				<artifactId>dom4j</artifactId>
+  				<version>1.6.1</version>
   		</dependency>
   </dependencies>
+  	<build>
+		<finalName>${artifactId}</finalName>
+		<outputDirectory>${basedir}/target/classes</outputDirectory>
+		<testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
+		<scriptSourceDirectory>${basedir}/target/classes/resources
+		</scriptSourceDirectory>
+
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<classesDirectory>${basedir}/target/classes</classesDirectory>
+					<excludes>
+						<exclude>**/*.java</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+  
 </project>
