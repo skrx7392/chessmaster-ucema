@@ -49,8 +49,8 @@ public class ChessCell {
 
 	@Override
 	public String toString() {
-		// TODO: check null the piece.
-		return column + row + ":" + piece.toString();
+		String pieceDescription = (piece != null) ? piece.toString() : "";
+		return column + row + ":" + pieceDescription;
 	}
 
 	@Override
