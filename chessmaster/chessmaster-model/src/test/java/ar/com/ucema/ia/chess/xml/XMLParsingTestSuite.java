@@ -3,6 +3,8 @@ package ar.com.ucema.ia.chess.xml;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 import ar.com.ucema.ia.chess.xml.fixtures.BishopParsingTestCase;
+import ar.com.ucema.ia.chess.xml.fixtures.ChessBoardParsingTestCase;
+import ar.com.ucema.ia.chess.xml.fixtures.ChessCellParsingTestCase;
 import ar.com.ucema.ia.chess.xml.fixtures.KingParsingTestCase;
 import ar.com.ucema.ia.chess.xml.fixtures.KnightParsingTestCase;
 import ar.com.ucema.ia.chess.xml.fixtures.PawnParsingTestCase;
@@ -19,6 +21,8 @@ public class XMLParsingTestSuite {
 	    xmlTestSuite.addTestSuite(PawnParsingTestCase.class);
 	    xmlTestSuite.addTestSuite(QueenParsingTestCase.class);
 	    xmlTestSuite.addTestSuite(RookParsingTestCase.class);
-		return xmlTestSuite;
+	    xmlTestSuite.addTestSuite(ChessCellParsingTestCase.class);
+	    xmlTestSuite.addTestSuite(ChessBoardParsingTestCase.class);
+	    return xmlTestSuite;
 	}
 }

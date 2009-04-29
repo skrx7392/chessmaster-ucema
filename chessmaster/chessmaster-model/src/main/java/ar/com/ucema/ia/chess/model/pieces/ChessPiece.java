@@ -49,7 +49,7 @@ public abstract class ChessPiece implements Parseable {
 	public abstract String getPieceNameXMLTag();
 
 	public Element toXML(Element root) {
-		Element e = root.addElement(getPieceNameXMLTag()).addAttribute(XMLConstants.COLOR_ATTRIBUTE, getColor().toString());
+		Element e = root.addElement(getPieceNameXMLTag()).addAttribute(XMLConstants.ATTRIBUTE_COLOR, getColor().toString());
 		return e;
 	}
 	

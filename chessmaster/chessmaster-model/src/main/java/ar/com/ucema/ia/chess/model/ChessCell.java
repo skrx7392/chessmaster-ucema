@@ -3,6 +3,7 @@ package ar.com.ucema.ia.chess.model;
 import org.dom4j.Element;
 
 import ar.com.ucema.ia.chess.model.pieces.ChessPiece;
+import ar.com.ucema.ia.chess.model.xml.XMLConstants;
 
 /**
  * Defines the cell of a chess board.
@@ -92,8 +93,15 @@ public class ChessCell implements Parseable {
 	}
 
 	public Element toXML(Element root) {
-		// TODO Auto-generated method stub
-		return null;
+		Element e = root.addElement(XMLConstants.TAG_CHESS_PIECE)
+							.addAttribute(XMLConstants.ATTRIBUTE_COLUMN, column)
+							.addAttribute(XMLConstants.ATTRIBUTE_ROW, row.toString());
+		
+		if ( piece != null) {
+			piece.toXML(e);
+		}
+		
+		return e;
 	}
 	
 }

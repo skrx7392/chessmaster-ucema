@@ -8,6 +8,7 @@ import org.dom4j.Element;
 
 import ar.com.ucema.ia.chess.model.pieces.ChessPiece;
 import ar.com.ucema.ia.chess.model.xml.XMLConstants;
+import ar.com.ucema.ia.chess.utils.XMLPrinter;
 
 /**
  * Test base para todo lo referente a XML 
@@ -28,9 +29,12 @@ public class XMLBaseTestCase extends TestCase {
 	public void assertToXML(Element e, ChessPiece piece) {
 		assertNotNull(e);
 		assertEquals(piece.getPieceNameXMLTag(), e.getName());
-		assertEquals(piece.getColor().toString(), e.attributeValue(XMLConstants.COLOR_ATTRIBUTE));
-		System.out.println(e.asXML());
-
+		assertEquals(piece.getColor().toString(), e.attributeValue(XMLConstants.ATTRIBUTE_COLOR));
+		printDocument();
+	}
+	
+	public void printDocument() {
+		XMLPrinter.printToConsole(doc);
 	}
 	
 }
