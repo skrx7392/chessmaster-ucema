@@ -18,7 +18,10 @@ public class ChessBoard implements Parseable {
 	private List<ChessCell> cells;
 
 	public ChessBoard() {
+		ChessBoardPopulator populator = new ChessBoardPopulator();
+		
 		this.initializeBoard();
+		populator.populateBoard(this);
 	}
 
 	private void initializeBoard() {
@@ -28,7 +31,7 @@ public class ChessBoard implements Parseable {
 		List<String> columns = chessColumns.getColumns();
 
 		for (String column : columns) {
-			for (int row = 0; row < 7; row++) {
+			for (int row = 0; row < 8; row++) {
 				this.cells.add(new ChessCell(column, row + 1));
 			}
 		}
@@ -46,6 +49,20 @@ public class ChessBoard implements Parseable {
 			throw new ChessCellNonExistentException("There is no ChessCell given that position. " + aPosibleCell.toString());
 	}
 
+	/**
+	 * Gets the chess cell from the board at a given position
+	 */
+	public List<ChessCell> getChessCellRow(Integer row) {
+		List<ChessCell> list = new ArrayList<ChessCell>();
+
+		for (ChessCell aCell : cells) {
+			if (aCell.getRow().equals(row)) {
+				list.add(aCell);
+			}
+		}
+		return list;
+	}
+	
 	/**
 	 * Gets the chess piece from the board at a given position
 	 */
