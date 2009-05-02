@@ -32,6 +32,10 @@ public class ChessColumns {
 	public String addPositionToColumn(String column, int positions) {
 		PositionAssociation asoc = getPositionByName(column);
 		int columnNumber = asoc.columnNumber + positions;
+		
+		if ( columnNumber >= 8 || columnNumber <= 0)
+			return column;
+			
 		return getPositionByNumber(columnNumber).columnName;
 	}
 	

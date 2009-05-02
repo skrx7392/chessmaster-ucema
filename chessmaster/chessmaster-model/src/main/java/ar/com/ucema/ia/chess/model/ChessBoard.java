@@ -24,6 +24,16 @@ public class ChessBoard implements Parseable {
 		populator.populateBoard(this);
 	}
 
+	public ChessBoard(Boolean isEmpty) {
+		this.initializeBoard();
+
+		if (!isEmpty) {
+			ChessBoardPopulator populator = new ChessBoardPopulator();
+			populator.populateBoard(this);
+		}
+	}
+
+	
 	private void initializeBoard() {
 		this.cells = new ArrayList<ChessCell>();
 		
@@ -75,6 +85,14 @@ public class ChessBoard implements Parseable {
 			throw new ChessCellNonExistentException("There is no ChessPiece given that position. " + cell.toString());
 	}
 
+	/**
+	 * Sets the chess piece from the board at a given position
+	 */
+	public void setPieceAt(String column, Integer row, ChessPiece piece) {
+		ChessCell cell = getChessCellAt(column, row);
+		cell.setPiece(piece);
+	}
+	
 	/**
 	 * Removes the piece from the board
 	 */
