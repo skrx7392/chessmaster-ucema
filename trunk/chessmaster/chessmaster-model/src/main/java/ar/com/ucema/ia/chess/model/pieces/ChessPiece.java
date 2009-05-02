@@ -4,6 +4,7 @@ import org.dom4j.Element;
 
 import ar.com.ucema.ia.chess.model.ChessBoard;
 import ar.com.ucema.ia.chess.model.ChessCell;
+import ar.com.ucema.ia.chess.model.ChessMovement;
 import ar.com.ucema.ia.chess.model.Color;
 import ar.com.ucema.ia.chess.model.Parseable;
 import ar.com.ucema.ia.chess.model.xml.XMLConstants;
@@ -22,12 +23,15 @@ public abstract class ChessPiece implements Parseable {
 	}
 
 	/**
-	 * Checks if the movement the piece is trying to do es valid. 
-	 * @param from the origin {@link ChessCell}
-	 * @param to the {@link ChessBoard} destination.
+	 * Checks if the movement the piece is trying to do is valid. At this moment, the only check that is made is to see if the king is in check. 
+	 * @param move the move of the play.
 	 * @return true if the movement is valid acording to chess movement rules, false otherwise.
 	 */
-	public abstract boolean isValidMove(ChessCell from, ChessCell to);
+	public boolean isValidMove(ChessMovement move) {
+		if (move.leavesKingInCheck(move))
+			return false;
+		return true;
+	}
 	
 	/**
 	 * Eats the pieces right out of the board.
@@ -41,6 +45,8 @@ public abstract class ChessPiece implements Parseable {
 	 * @return true if the piece can do at least one posible movement, false otherwise.
 	 */
 	public abstract boolean canMove(ChessBoard board);
+	
+
 	
 	/**
 	 * Returns the piece xml tag.
