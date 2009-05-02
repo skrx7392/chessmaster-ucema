@@ -57,7 +57,10 @@ public class Pawn extends ChessPiece {
 			
 			// verifica que se quiera mover para adelante.
 			if (destinyRow < currentRow) {
-				
+				// falta verificar que la posicion a la que se quiere mover no este ocupada por otra pieza.
+				if ( move.getBoard().getChessCellAt(move.getFrom().getColumn(), destinyRow).getPiece() != null)
+					return false;
+
 				// sino pasó la mitad del tablero, puede llegar hasta la mitad.
 				if (destinyRow >= 5 ) {
 					return true;
@@ -89,6 +92,9 @@ public class Pawn extends ChessPiece {
 		if ( move.getFrom().getColumn().equals(move.getTo().getColumn())) {
 			// verifica que se quiera mover para adelante.
 			if (destinyRow > currentRow) {
+				// falta verificar que la posicion a la que se quiere mover no este ocupada por otra pieza.
+				if ( move.getBoard().getChessCellAt(move.getFrom().getColumn(), destinyRow).getPiece() != null)
+					return false;
 				
 				// sino pasó la mitad del tablero, puede llegar hasta la mitad.
 				if (destinyRow <= 4 ) {
