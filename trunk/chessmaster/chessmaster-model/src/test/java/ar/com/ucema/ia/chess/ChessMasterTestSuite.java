@@ -12,7 +12,7 @@ public class ChessMasterTestSuite {
 	public static Test suite() {
 	    TestSuite suite = new TestSuite();
 	    suite.addTest(XMLParsingTestSuite.suite());
-	    //suite.addTest(ChessMovementTestSuite.suite());
+	    suite.addTest(ChessMovementTestSuite.suite());
 	    suite.addTest(StuffTestSuite.suite());
 	    return suite;
 	}
