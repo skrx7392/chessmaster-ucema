@@ -88,7 +88,6 @@ public class Pawn extends ChessPiece {
 
 	/**
 	 * valida el movimiento de un peon blanco.
-	 * @param move TODO
 	 * @return true si se puede mover, false en caso contrario.
 	 */
 	private boolean validateWhiteMovement(ChessMovement move) {
