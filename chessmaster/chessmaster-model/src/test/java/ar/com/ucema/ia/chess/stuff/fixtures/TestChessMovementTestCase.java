@@ -1,1 +1,0 @@
-package ar.com.ucema.ia.chess.stuff.fixtures;import junit.framework.TestCase;public class TestChessMovementTestCase extends TestCase {}
