@@ -14,6 +14,7 @@ import ar.com.ucema.ia.chess.model.xml.XMLConstants;
  * Defines the chess board.
  * 
  * @author ejadib
+ * @author Matías Suárez.
  */
 public class ChessBoard implements Parseable {
 	private List<ChessCell> cells;
@@ -168,7 +169,7 @@ public class ChessBoard implements Parseable {
 	}
 
 	public Object fromXML(Element e) {
-		// TODO Auto-generated method stub
+		// TODO implementar hidratacion a XML
 		return null;
 	}
 
