@@ -38,11 +38,6 @@ public class Queen extends ChessPiece {
 		if ( movedByColumn(move) && movedByRow(move) )
 			return false;
 		
-		// verifico que la posicion a donde quiere ir, no haya una pieza del mismo color
-		if ( move.getBoard().getChessCellAt(move.getTo()).getPiece() != null )
-			if ( move.getBoard().getChessCellAt(move.getFrom()).getPiece().getColor().equals(move.getBoard().getChessCellAt(move.getTo()).getPiece().getColor()))
-				return false;
-		
 		//analizo el movimiento por columna
 		if (movedByColumn(move) || (movedByRow(move) && move.getTo().getRow() <= 7)) {
 			

@@ -30,6 +30,12 @@ public abstract class ChessPiece implements Parseable {
 	public boolean isValidMove(ChessMovement move) {
 		if (move.leavesKingInCheck(move))
 			return false;
+		
+		// verifico que la posicion a donde quiere ir, no haya una pieza del mismo color
+		if ( move.getBoard().getChessCellAt(move.getTo()).getPiece() != null )
+			if ( move.getBoard().getChessCellAt(move.getFrom()).getPiece().getColor().equals(move.getBoard().getChessCellAt(move.getTo()).getPiece().getColor()))
+				return false;
+		
 		return true;
 	}
 	

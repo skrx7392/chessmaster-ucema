@@ -39,17 +39,8 @@ public class King extends ChessPiece {
 	
 		// verifica que no se quiera mover mas de una posicion.
 		if ( (rowDifference <= 1) && (colDifference <= 1) ) { 
-			
-			// verifica que no exista una pieza del mismo color 
-			if (move.getBoard().getChessCellAt(move.getTo()).getPiece() != null) {
-				Color toColor = move.getBoard().getChessCellAt(move.getTo()).getPiece().getColor();
-				Color fromColor = move.getBoard().getChessCellAt(move.getFrom()).getPiece().getColor();
-				
-				return (!toColor.equals(fromColor)); 
-			} else {
-				return true;
-			}
-		}
+			return true;
+		} 
 
 		return false;
 	}

@@ -2,6 +2,7 @@ package ar.com.ucema.ia.chess.model.pieces;
 
 import ar.com.ucema.ia.chess.model.ChessBoard;
 import ar.com.ucema.ia.chess.model.ChessCell;
+import ar.com.ucema.ia.chess.model.ChessColumns;
 import ar.com.ucema.ia.chess.model.ChessMovement;
 import ar.com.ucema.ia.chess.model.Color;
 import ar.com.ucema.ia.chess.model.xml.XMLConstants;
@@ -28,6 +29,14 @@ public class Knight extends ChessPiece {
 		if ( super.isValidMove(move) == false )
 			return false;
 
+		ChessColumns columns = new ChessColumns();
+		
+		int hMovement = Math.abs(move.getFrom().getRow() - move.getTo().getRow());
+		int vMovement = Math.abs(columns.getColumnNumber(move.getFrom().getColumn()) - columns.getColumnNumber(move.getTo().getColumn()));
+		
+		if ( ((hMovement == 1) && (vMovement == 2)) || ((hMovement == 2) && (vMovement == 1)) )
+			return true;
+		
 		return false;
 	}
 
