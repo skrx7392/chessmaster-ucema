@@ -88,7 +88,7 @@ public class ChessCell implements Parseable {
 	}
 
 	public Object fromXML(Element e) {
-		// TODO Auto-generated method stub
+		// TODO implementar hidratacion a xml
 		return null;
 	}
 
