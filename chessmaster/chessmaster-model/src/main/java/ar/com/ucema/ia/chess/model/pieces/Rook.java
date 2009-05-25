@@ -1,7 +1,5 @@
 package ar.com.ucema.ia.chess.model.pieces;
 
-import java.util.List;
-
 import ar.com.ucema.ia.chess.model.ChessBoard;
 import ar.com.ucema.ia.chess.model.ChessCell;
 import ar.com.ucema.ia.chess.model.ChessMovement;
@@ -36,27 +34,19 @@ public class Rook extends ChessPiece {
 		
 		//analizo el movimiento por columna
 		if (movedByColumn(move) || (movedByRow(move) && move.getTo().getRow() <= 7)) {
-			
 			// si no hay ninguna pieza en el medio, es un movimiento valido.
-			return !isThereAnyChessPieceIn(move.getBoard().getChessCellInBetween(move.getFrom(), move.getTo()), move.getBoard().getChessCellAt(move.getFrom()).getPiece());
+			boolean isThereAnyPieceInBetween = move.getBoard().isThereAnyChessPieceIn(move.getBoard().getChessCellInBetween(move.getFrom(), move.getTo()), move.getBoard().getChessCellAt(move.getFrom()).getPiece()); 
+			
+			if ( isThereAnyPieceInBetween && move.getBoard().getChessCellAt(move.getTo()).getPiece() != null ) {
+				return true;
+			}
+			
+			return !isThereAnyPieceInBetween;
 		}
 
 		return false;
 	}
 	
-	/**
-	 * Checks out if there is any piece in the cells.
-	 * @param cells all the chess posible cells.
-	 * @param thePiece the piece in which the movement was made.
-	 * @return true if there is a chess piece between the source and the destiny, false otherwise.
-	 */
-	private Boolean isThereAnyChessPieceIn(List<ChessCell> cells, ChessPiece thePiece) {
-		for (ChessCell chessCell : cells) {
-			if ( chessCell.getPiece() != null && !(chessCell.getPiece() == thePiece))
-				return true;
-		}
-		return false;
-	}
 
 	private Boolean movedByColumn(ChessMovement move) {
 		return (move.getFrom().getColumn().equals(move.getTo().getColumn()));

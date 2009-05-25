@@ -1,9 +1,8 @@
 package ar.com.ucema.ia.chess.model.pieces;
 
-import java.util.List;
-
 import ar.com.ucema.ia.chess.model.ChessBoard;
 import ar.com.ucema.ia.chess.model.ChessCell;
+import ar.com.ucema.ia.chess.model.ChessColumns;
 import ar.com.ucema.ia.chess.model.ChessMovement;
 import ar.com.ucema.ia.chess.model.Color;
 import ar.com.ucema.ia.chess.model.xml.XMLConstants;
@@ -34,31 +33,30 @@ public class Queen extends ChessPiece {
 		if ( super.isValidMove(move) == false )
 			return false;
 
-		// verifico que no se quiera mover en forma diagonal.
-		if ( movedByColumn(move) && movedByRow(move) )
-			return false;
+		// analizo el movimiento por diagonales
+		ChessColumns columns = new ChessColumns();
+		int hMovement = Math.abs(move.getFrom().getRow() - move.getTo().getRow());
+		int vMovement = Math.abs(columns.getColumnNumber(move.getFrom().getColumn()) - columns.getColumnNumber(move.getTo().getColumn()));
 		
-		//analizo el movimiento por columna
-		if (movedByColumn(move) || (movedByRow(move) && move.getTo().getRow() <= 7)) {
-			
+		// verifico que no se quiera mover en forma diagonal.
+		if (hMovement == vMovement ) {
 			// si no hay ninguna pieza en el medio, es un movimiento valido.
-			return !isThereAnyChessPieceIn(move.getBoard().getChessCellInBetween(move.getFrom(), move.getTo()), move.getBoard().getChessCellAt(move.getFrom()).getPiece());
+			boolean isThereAnyPieceInBetween = move.getBoard().isThereAnyChessPieceIn(move.getBoard().getChessCellInBetween(move.getFrom(), move.getTo()), move.getBoard().getChessCellAt(move.getFrom()).getPiece()); 
+			
+			if ( isThereAnyPieceInBetween && move.getBoard().getChessCellAt(move.getTo()).getPiece() != null ) {
+				return true;
+			}
+			
+			return !isThereAnyPieceInBetween;
 		}
 
-		return false;
-	}
-	
-	/**
-	 * Checks out if there is any piece in the cells.
-	 * @param cells all the chess posible cells.
-	 * @param thePiece the piece in which the movement was made.
-	 * @return true if there is a chess piece between the source and the destiny, false otherwise.
-	 */
-	private Boolean isThereAnyChessPieceIn(List<ChessCell> cells, ChessPiece thePiece) {
-		for (ChessCell chessCell : cells) {
-			if ( chessCell.getPiece() != null && !(chessCell.getPiece() == thePiece))
-				return true;
+
+		//analizo el movimiento por columna
+		if (movedByColumn(move) || (movedByRow(move) && move.getTo().getRow() <= 7)) {
+			// si no hay ninguna pieza en el medio, es un movimiento valido.
+			return !move.getBoard().isThereAnyChessPieceIn(move.getBoard().getChessCellInBetween(move.getFrom(), move.getTo()), move.getBoard().getChessCellAt(move.getFrom()).getPiece());
 		}
+
 		return false;
 	}
 
