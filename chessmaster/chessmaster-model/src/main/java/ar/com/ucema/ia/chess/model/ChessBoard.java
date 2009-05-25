@@ -1,6 +1,7 @@
 package ar.com.ucema.ia.chess.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.dom4j.Element;
@@ -33,6 +34,14 @@ public class ChessBoard implements Parseable {
 		}
 	}
 
+	/**
+	 * verificar si el rey del determinado color esta en jaque o no.
+	 * @param color
+	 * @return
+	 */
+	public boolean isKingInCheck(Color color) {
+		return true;
+	}
 	
 	private void initializeBoard() {
 		this.cells = new ArrayList<ChessCell>();
@@ -48,6 +57,56 @@ public class ChessBoard implements Parseable {
 	}
 
 	/**
+	 * Obtiene todas las celdas de entre 2 celdas posibles. Las celdas deben estas separadas horizontalmente, verticalmente o diagonal.
+	 * @param aCell
+	 * @param anotherCell
+	 * @return
+	 */
+	public List<ChessCell> getChessCellInBetween(ChessCell aCell, ChessCell anotherCell) {
+		if ( aCell.getColumn().equals(anotherCell.getColumn()) )
+			return getChessCellInBetweenArrangedVertically(aCell, anotherCell);
+		else
+			if ( aCell.getRow().equals(anotherCell.getRow()) )
+				return getChessCellInBetweenArrangedHorizontally(aCell, anotherCell);
+			else
+				return getChessCellInBetweenArrangedDiagonally(aCell, anotherCell);
+	}
+	
+	
+	private List<ChessCell> getChessCellInBetweenArrangedDiagonally(ChessCell cell, ChessCell anotherCell) {
+		List<ChessCell> list = new ArrayList<ChessCell>();
+		//TODO: implementar
+		return list;
+	}
+
+	private List<ChessCell> getChessCellInBetweenArrangedHorizontally(ChessCell cell, ChessCell anotherCell) {
+		List<ChessCell> list = new ArrayList<ChessCell>();
+		ChessColumns columns = new ChessColumns();
+		int startIndex = (columns.getColumnNumber(cell.getColumn()) > columns.getColumnNumber(anotherCell.getColumn())) ? columns.getColumnNumber(anotherCell.getColumn()) : columns.getColumnNumber(cell.getColumn());
+		int endIndex =   (columns.getColumnNumber(cell.getColumn()) > columns.getColumnNumber(anotherCell.getColumn())) ? columns.getColumnNumber(cell.getColumn()) : columns.getColumnNumber(anotherCell.getColumn());
+
+		
+		
+		for (int i = startIndex; i < endIndex; i++) {
+			list.add(getChessCellAt(columns.getColumnByNumber(i), cell.getRow()));
+		} 
+		return list;
+	}
+
+	private List<ChessCell> getChessCellInBetweenArrangedVertically(ChessCell cell, ChessCell anotherCell) {
+		List<ChessCell> list = new ArrayList<ChessCell>();
+		int startIndex = (cell.getRow() > anotherCell.getRow()) ? anotherCell.getRow() : cell.getRow();
+		int endIndex = (cell.getRow() > anotherCell.getRow()) ? cell.getRow() : anotherCell.getRow();
+		
+		for (int i = startIndex; i < endIndex; i++) {
+			list.add(getChessCellAt(cell.getColumn(), i));
+		}
+		
+		return list;
+	}
+
+	
+	/**
 	 * Gets the chess cell from the board at a given position
 	 */
 	public ChessCell getChessCellAt(String column, Integer row) {
@@ -57,6 +116,13 @@ public class ChessBoard implements Parseable {
 			return cells.get(cells.indexOf(aPosibleCell));
 		} else
 			throw new ChessCellNonExistentException("There is no ChessCell given that position. " + aPosibleCell.toString());
+	}
+	
+	public ChessCell getChessCellAt(ChessCell cell) {
+		if (cells.contains(cell)) {
+			return cells.get(cells.indexOf(cell));
+		} else
+			throw new ChessCellNonExistentException("There is no ChessCell given that position. " + cell.toString());
 	}
 
 	/**
@@ -114,5 +180,11 @@ public class ChessBoard implements Parseable {
 		}
 
 		return e;
+	}
+	
+	public ChessBoard clone() {
+		ChessBoard board = new ChessBoard();
+		Collections.copy(board.cells, this.cells);
+		return board;
 	}
 }

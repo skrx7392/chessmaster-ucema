@@ -39,6 +39,16 @@ public class ChessColumns {
 		return getPositionByNumber(columnNumber).columnName;
 	}
 	
+	
+	public Integer getColumnDifferenceBetween(String aColumn,String anotherColumn) {
+		PositionAssociation aAsoc = getPositionByName(aColumn);
+		PositionAssociation anotherAsoc = getPositionByName(anotherColumn);
+		
+		int colDifference = (aAsoc.columnNumber > anotherAsoc.columnNumber) ? (aAsoc.columnNumber - anotherAsoc.columnNumber) : anotherAsoc.columnNumber - aAsoc.columnNumber;
+		return colDifference;
+	}
+	
+	
 	public List<String> getColumns() {
 		List<String> columns = new ArrayList<String>();
 		columns.add(A);
@@ -51,7 +61,14 @@ public class ChessColumns {
 		columns.add(H);
 		return columns;
 	}
+
+	public Integer getColumnNumber(String column) {
+		return getPositionByName(column).columnNumber;
+	}
 	
+	public String getColumnByNumber(Integer columnNumber) {
+		return getPositionByNumber(columnNumber).columnName;
+	}
 	
 	private PositionAssociation getPositionByName(String name) {
 		for (PositionAssociation pos : columnsMapping) {
