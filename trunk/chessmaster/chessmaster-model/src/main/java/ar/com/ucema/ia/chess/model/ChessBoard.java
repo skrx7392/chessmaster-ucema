@@ -76,7 +76,26 @@ public class ChessBoard implements Parseable {
 	
 	private List<ChessCell> getChessCellInBetweenArrangedDiagonally(ChessCell cell, ChessCell anotherCell) {
 		List<ChessCell> list = new ArrayList<ChessCell>();
-		//TODO: implementar
+		ChessColumns columns = new ChessColumns();
+
+		int startIndex = (cell.getRow() > anotherCell.getRow()) ? anotherCell.getRow() : cell.getRow();
+		int endIndex = (cell.getRow() > anotherCell.getRow()) ? cell.getRow() : anotherCell.getRow();
+		
+
+		for (int i = startIndex; i <= endIndex; i++) {
+			// problema: no se como identificar si columna la tengo que sumar o restar.
+			int collPositions = i - startIndex;
+			int rowPositions = i - startIndex;
+			
+			if ( columns.getColumnNumber(cell.getColumn()) > columns.getColumnNumber(anotherCell.getColumn()) )
+				collPositions *= -1;
+			
+			if ( cell.getRow() > anotherCell.getRow() )
+				rowPositions *= -1;
+			
+			list.add(getChessCellAt(columns.addPositionToColumn(cell.getColumn(), collPositions), cell.getRow() + rowPositions));
+		}
+
 		return list;
 	}
 
@@ -86,9 +105,7 @@ public class ChessBoard implements Parseable {
 		int startIndex = (columns.getColumnNumber(cell.getColumn()) > columns.getColumnNumber(anotherCell.getColumn())) ? columns.getColumnNumber(anotherCell.getColumn()) : columns.getColumnNumber(cell.getColumn());
 		int endIndex =   (columns.getColumnNumber(cell.getColumn()) > columns.getColumnNumber(anotherCell.getColumn())) ? columns.getColumnNumber(cell.getColumn()) : columns.getColumnNumber(anotherCell.getColumn());
 
-		
-		
-		for (int i = startIndex; i < endIndex; i++) {
+		for (int i = startIndex; i <= endIndex; i++) {
 			list.add(getChessCellAt(columns.getColumnByNumber(i), cell.getRow()));
 		} 
 		return list;
@@ -99,13 +116,26 @@ public class ChessBoard implements Parseable {
 		int startIndex = (cell.getRow() > anotherCell.getRow()) ? anotherCell.getRow() : cell.getRow();
 		int endIndex = (cell.getRow() > anotherCell.getRow()) ? cell.getRow() : anotherCell.getRow();
 		
-		for (int i = startIndex; i < endIndex; i++) {
+		for (int i = startIndex; i <= endIndex; i++) {
 			list.add(getChessCellAt(cell.getColumn(), i));
 		}
 		
 		return list;
 	}
 
+	/**
+	 * Checks out if there is any piece in the cells.
+	 * @param cells all the chess posible cells.
+	 * @param thePiece the piece in which the movement was made.
+	 * @return true if there is a chess piece between the source and the destiny, false otherwise.
+	 */
+	public Boolean isThereAnyChessPieceIn(List<ChessCell> cells, ChessPiece thePiece) {
+		for (ChessCell chessCell : cells) {
+			if ( chessCell.getPiece() != null && !(chessCell.getPiece() == thePiece))
+				return true;
+		}
+		return false;
+	}
 	
 	/**
 	 * Gets the chess cell from the board at a given position
