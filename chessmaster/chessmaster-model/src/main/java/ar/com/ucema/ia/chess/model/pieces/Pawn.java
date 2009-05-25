@@ -63,7 +63,16 @@ public class Pawn extends ChessPiece {
 
 				// sino pasó la mitad del tablero, puede llegar hasta la mitad.
 				if (destinyRow >= 5 ) {
-					return true;
+					// tengo que verificar que no haya una pieza intermedia, solo puede estar en la posicion 6.
+					// tengo que verificar que no haya una pieza intermedia, solo puede estar en la posicion 3.
+					if ( move.getBoard().getChessCellAt(move.getFrom().getColumn(), 6).getPiece() != null ) {
+						ChessPiece sourcePiece = move.getBoard().getChessCellAt(move.getFrom()).getPiece();
+						ChessPiece otherPiece = move.getBoard().getChessCellAt(move.getFrom().getColumn(), 6).getPiece();
+						
+						// si es la misma pieza, es valido porque de hecho no esta queriendo hacer un movimiento.
+						return (sourcePiece == otherPiece);
+					} else
+						return true;
 				} else {
 					return  ((destinyRow - currentRow) == -1); // si esta en la mitad del tablero, solo se puede mover de a una posicion.
 				}
@@ -98,7 +107,15 @@ public class Pawn extends ChessPiece {
 				
 				// sino pasó la mitad del tablero, puede llegar hasta la mitad.
 				if (destinyRow <= 4 ) {
-					return true;
+					// tengo que verificar que no haya una pieza intermedia, solo puede estar en la posicion 3.
+					if ( move.getBoard().getChessCellAt(move.getFrom().getColumn(), 3).getPiece() != null ) {
+						ChessPiece sourcePiece = move.getBoard().getChessCellAt(move.getFrom()).getPiece();
+						ChessPiece otherPiece = move.getBoard().getChessCellAt(move.getFrom().getColumn(), 3).getPiece();
+						
+						// si es la misma pieza, es valido porque de hecho no esta queriendo hacer un movimiento.
+						return (sourcePiece == otherPiece);
+					} else
+						return true;
 				} else {
 					return  ((destinyRow - currentRow) == 1); // si esta en la mitad del tablero, solo se puede mover de a una posicion.
 				}
