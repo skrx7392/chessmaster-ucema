@@ -19,12 +19,7 @@ public class ChessColumnsTestCase extends TestCase {
 	public void testAddColumnOutOfRange() {
 		ChessColumns columns = new ChessColumns();
 		
-		try {
-			columns.addPositionToColumn(ChessColumns.A, -1);
-			columns.addPositionToColumn(ChessColumns.H, 1);
-			fail();
-		} catch (Exception e) {
-			assertTrue(true);
-		}
+		assertEquals(ChessColumns.A, columns.addPositionToColumn(ChessColumns.A, -1));
+		assertEquals(ChessColumns.H, columns.addPositionToColumn(ChessColumns.H, 1));
 	}
 }
