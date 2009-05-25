@@ -30,7 +30,7 @@ public class ChessCell implements Parseable {
 		return column;
 	}
 
-	private void setColumn(String column) {
+	public void setColumn(String column) {
 		this.column = column;
 	}
 
@@ -38,7 +38,7 @@ public class ChessCell implements Parseable {
 		return row;
 	}
 
-	private void setRow(Integer row) {
+	public void setRow(Integer row) {
 		this.row = row;
 	}
 
