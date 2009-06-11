@@ -133,9 +133,6 @@ public class Queen extends ChessPiece {
 		}
 		
 		for (int i = (columnNumber-1); i > 0; i--) {
-			String a = columns.addPositionToColumn(currentCell.getColumn(), negativeRowMoves);
-			System.out.println(a);
-			
 			// verifico que no se vaya de rango.
 			if ( (currentCell.getRow() + negativeRowMoves) > 0)  
 				list.add(new BlackPieceChessMovement(currentCell, new ChessCell(columns.addPositionToColumn(currentCell.getColumn(), negativeRowMoves), currentCell.getRow() + negativeRowMoves, this)));

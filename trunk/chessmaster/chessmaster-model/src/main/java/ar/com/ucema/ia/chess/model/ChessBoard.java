@@ -235,7 +235,7 @@ public class ChessBoard implements Parseable, Cloneable {
 		List<ChessCell> chessCells = new ArrayList<ChessCell>();
 
 		for (ChessCell chessCell : this.cells) {
-			if ( chessCell.getPiece() != null && chessCell.getPiece().equals(color) )
+			if ( chessCell.getPiece() != null && chessCell.getPiece().getColor().equals(color) )
 				chessCells.add(chessCell);
 		}
 		return chessCells;
@@ -243,7 +243,7 @@ public class ChessBoard implements Parseable, Cloneable {
 
 	
 	public Boolean moveWithThis(ChessMovement move) {
-		ChessPiece chessPiece = this.getChessCellAt(move.getTo()).getPiece();
+		ChessPiece chessPiece = this.getChessCellAt(move.getFrom()).getPiece();
 		
 		if ( chessPiece != null ) {
 			if ( chessPiece.isValidMove(move) ) {

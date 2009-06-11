@@ -154,10 +154,14 @@ public class Pawn extends ChessPiece {
 		List<ChessMovement> list = new ArrayList<ChessMovement>();
 		ChessColumns columns = new ChessColumns();
 		
-		list.add(new BlackPieceChessMovement(currentCell, new ChessCell(columns.addPositionToColumn(currentCell.getColumn(), -1), currentCell.getRow() + 1, this)));
-		list.add(new BlackPieceChessMovement(currentCell, new ChessCell(columns.addPositionToColumn(currentCell.getColumn(), 1), currentCell.getRow() + 1, this)));
-		list.add(new BlackPieceChessMovement(currentCell, new ChessCell(currentCell.getColumn(), currentCell.getRow() + 1, this)));
-		list.add(new BlackPieceChessMovement(currentCell, new ChessCell(currentCell.getColumn(), currentCell.getRow() + 2, this)));
+		if ( (currentCell.getRow() - 1) > 0 ) {
+			list.add(new BlackPieceChessMovement(currentCell, new ChessCell(columns.addPositionToColumn(currentCell.getColumn(), -1), currentCell.getRow() - 1, this)));
+			list.add(new BlackPieceChessMovement(currentCell, new ChessCell(columns.addPositionToColumn(currentCell.getColumn(), 1), currentCell.getRow() - 1, this)));
+			list.add(new BlackPieceChessMovement(currentCell, new ChessCell(currentCell.getColumn(), currentCell.getRow() - 1, this)));
+		}
+		
+		if ( (currentCell.getRow() - 2) > 0 ) 
+			list.add(new BlackPieceChessMovement(currentCell, new ChessCell(currentCell.getColumn(), currentCell.getRow() - 2, this)));
 		
 		return list;
 	}
