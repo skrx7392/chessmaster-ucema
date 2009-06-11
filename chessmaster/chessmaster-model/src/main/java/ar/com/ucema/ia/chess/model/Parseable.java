@@ -5,7 +5,7 @@ import org.dom4j.Element;
 
 /**
  * Define los metodos basicos para los objetos que quieran ser parseados a XML. 
- * @author Matías Suárez
+ * @author Matï¿½as Suï¿½rez
  */
 public interface Parseable {
 
@@ -16,12 +16,5 @@ public interface Parseable {
 	 * @return the chess piece as XML
 	 */
 	Element toXML(Element root);
-	
-	/**
-	 * Generates the object from a {@link Element}.
-	 * @param e the element.
-	 * @return a object
-	 */
-	Object fromXML(Element e);
 	
 }

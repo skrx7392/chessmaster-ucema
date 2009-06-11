@@ -198,11 +198,6 @@ public class ChessBoard implements Parseable {
 		cell.setPiece(null);
 	}
 
-	public Object fromXML(Element e) {
-		// TODO implementar hidratacion a XML
-		return null;
-	}
-
 	public Element toXML(Element root) {
 		Element e = root.addElement(XMLConstants.TAG_CHESS_BOARD);
 
@@ -218,4 +213,35 @@ public class ChessBoard implements Parseable {
 		Collections.copy(board.cells, this.cells);
 		return board;
 	}
+
+	public Boolean moveWithThis(ChessMovement move) {
+		ChessPiece chessPiece = this.getChessCellAt(move.getTo()).getPiece();
+		
+		if ( chessPiece != null ) {
+			if ( chessPiece.isValidMove(move) ) {
+				chessPiece.move(move);
+				return true;
+			}
+		}
+		
+		// no intenta mover ninguna pieza
+		return false;
+	}
+
+	public List<ChessCell> getChessCells() {
+		return this.cells;
+	}
+	
+	
+	public List<ChessPiece> getChessCellsWithColor(Color color) {
+		List<ChessPiece> list = new ArrayList<ChessPiece>();
+		for (ChessCell chessCell : this.cells) {
+			if ( chessCell.getPiece() != null && chessCell.getPiece().getColor().equals(color))
+				list.add(chessCell.getPiece());
+		}
+		return list;
+	}
+
+
+
 }

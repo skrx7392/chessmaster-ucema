@@ -1,7 +1,6 @@
 package ar.com.ucema.ia.chess.model.pieces;
 
 import ar.com.ucema.ia.chess.model.ChessBoard;
-import ar.com.ucema.ia.chess.model.ChessCell;
 import ar.com.ucema.ia.chess.model.ChessColumns;
 import ar.com.ucema.ia.chess.model.ChessMovement;
 import ar.com.ucema.ia.chess.model.Color;
@@ -18,14 +17,17 @@ public class Pawn extends ChessPiece {
 		super(color);
 	}
 	
+	public static Pawn createBlackPawn() {
+		return new Pawn(Color.Black);
+	}
+
+	public static Pawn createWhitePawn() {
+		return new Pawn(Color.Black);
+	}
+	
 	@Override
 	public String toString() {
 		return this.getColor() + " Pawn";
-	}
-
-	@Override
-	public boolean eat(ChessCell to) {
-		return false;
 	}
 
 	@Override
@@ -135,6 +137,11 @@ public class Pawn extends ChessPiece {
 	@Override
 	public String getPieceNameXMLTag() {
 		return XMLConstants.TAG_PAWN;
+	}
+
+	@Override
+	public Integer getPieceValue() {
+		return 1;
 	}
 
 }

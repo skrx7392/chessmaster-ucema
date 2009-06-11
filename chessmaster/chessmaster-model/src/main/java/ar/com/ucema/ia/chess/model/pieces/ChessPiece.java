@@ -3,7 +3,6 @@ package ar.com.ucema.ia.chess.model.pieces;
 import org.dom4j.Element;
 
 import ar.com.ucema.ia.chess.model.ChessBoard;
-import ar.com.ucema.ia.chess.model.ChessCell;
 import ar.com.ucema.ia.chess.model.ChessMovement;
 import ar.com.ucema.ia.chess.model.Color;
 import ar.com.ucema.ia.chess.model.Parseable;
@@ -15,11 +14,16 @@ import ar.com.ucema.ia.chess.model.xml.XMLConstants;
  * @author ejadib
  */
 public abstract class ChessPiece implements Parseable {
+	private static Long generetor = 0L;
 	private Color color;
-	private Integer id;
+	private Long id;
 	
 	public ChessPiece(Color color) {
 		this.setColor(color);
+		this.id = generetor;
+		
+		// incrementa el generador.
+		ChessPiece.generetor++;
 	}
 
 	/**
@@ -32,7 +36,7 @@ public abstract class ChessPiece implements Parseable {
 			return false;
 		
 		// verifico que la posicion a donde quiere ir, no haya una pieza del mismo color
-		if ( move.getBoard().getChessCellAt(move.getTo()).getPiece() != null )
+		if ( canEat(move) )
 			if (move.getBoard().getChessCellAt(move.getFrom()).getPiece().getColor().equals(move.getBoard().getChessCellAt(move.getTo()).getPiece().getColor()))
 				return false;
 		
@@ -41,9 +45,23 @@ public abstract class ChessPiece implements Parseable {
 	
 	/**
 	 * Eats the pieces right out of the board.
-	 * @param to the piece that is about to eat.
+	 * @param move the piece that is about to eat.
 	 */
-	public abstract boolean eat(ChessCell to);
+	public boolean move(ChessMovement move) {
+		if ( canEat(move) ) {
+			move.getBoard().getChessCellAt(move.getFrom()).setPiece(null);
+			move.getBoard().getChessCellAt(move.getTo()).setPiece(this);
+			return true;
+		}
+		
+		return false;
+
+	}
+
+	private boolean canEat(ChessMovement move) {
+		return move.getBoard().getChessCellAt(move.getTo()).getPiece() != null;
+	}
+
 
 	/**
 	 * Checks if the piece can do any movement within the board.
@@ -53,6 +71,13 @@ public abstract class ChessPiece implements Parseable {
 	public abstract boolean canMove(ChessBoard board);
 	
 
+	/**
+	 * Obtiene el valor de una pieza para el juego
+	 * 
+	 * @return
+	 */
+	public abstract Integer getPieceValue();
+	
 	
 	/**
 	 * Returns the piece xml tag.
@@ -61,13 +86,8 @@ public abstract class ChessPiece implements Parseable {
 	public abstract String getPieceNameXMLTag();
 
 	public Element toXML(Element root) {
-		Element e = root.addElement(getPieceNameXMLTag()).addAttribute(XMLConstants.ATTRIBUTE_COLOR, getColor().toString());
+		Element e = root.addAttribute(XMLConstants.ATTRIBUTE_TYPE, getPieceNameXMLTag()).addAttribute(XMLConstants.ATTRIBUTE_COLOR, getColor().toString());
 		return e;
-	}
-	
-	public Object fromXML(Element e) {
-		// TODO implementar hidratacion a xml
-		return null;
 	}
 	
 	public Color getColor() {
@@ -78,11 +98,11 @@ public abstract class ChessPiece implements Parseable {
 		this.color = color;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -106,7 +126,7 @@ public abstract class ChessPiece implements Parseable {
 		if (color == null) {
 			if (other.color != null)
 				return false;
-		} else if ( (!color.equals(other.color)) && (getPieceNameXMLTag().equals(other.getPieceNameXMLTag())) )
+		} else if ( (!color.equals(other.color)) && (getPieceNameXMLTag().equals(other.getPieceNameXMLTag())) && (id.equals(other.id)))
 			return false;
 		return true;
 	}

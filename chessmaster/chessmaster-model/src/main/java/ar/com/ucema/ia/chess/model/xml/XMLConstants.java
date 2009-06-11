@@ -4,7 +4,7 @@ package ar.com.ucema.ia.chess.model.xml;
 /**
  * Define todas las constantes para el trato de los XML. 
  * 
- * @author Matías Suárez
+ * @author Matï¿½as Suï¿½rez
  */
 public class XMLConstants {
 
@@ -24,6 +24,7 @@ public class XMLConstants {
 	public static final String ATTRIBUTE_COLOR = "color";
 	public static final String ATTRIBUTE_ROW = "row";
 	public static final String ATTRIBUTE_COLUMN = "column";
+	public static final String ATTRIBUTE_TYPE = "type";
 	
 
 	

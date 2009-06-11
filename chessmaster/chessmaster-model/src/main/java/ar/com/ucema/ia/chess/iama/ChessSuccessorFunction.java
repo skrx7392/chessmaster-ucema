@@ -1,0 +1,1 @@
+package ar.com.ucema.ia.chess.iama;import java.util.List;import aima.search.framework.SuccessorFunction;public class ChessSuccessorFunction implements SuccessorFunction {	public List getSuccessors(Object arg0) {		// TODO Auto-generated method stub		return null;	}		}

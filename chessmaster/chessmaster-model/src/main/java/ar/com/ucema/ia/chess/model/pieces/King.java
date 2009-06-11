@@ -1,7 +1,6 @@
 package ar.com.ucema.ia.chess.model.pieces;
 
 import ar.com.ucema.ia.chess.model.ChessBoard;
-import ar.com.ucema.ia.chess.model.ChessCell;
 import ar.com.ucema.ia.chess.model.ChessColumns;
 import ar.com.ucema.ia.chess.model.ChessMovement;
 import ar.com.ucema.ia.chess.model.Color;
@@ -16,14 +15,18 @@ public class King extends ChessPiece {
 	public King(Color color) {
 		super(color);
 	}
+	
+	public static King createBlackKing() {
+		return new King(Color.Black);
+	}
+
+	public static King createWhiteKing() {
+		return new King(Color.Black);
+	}
+
 
 	@Override
 	public boolean canMove(ChessBoard board) {
-		return false;
-	}
-
-	@Override
-	public boolean eat(ChessCell to) {
 		return false;
 	}
 
@@ -48,6 +51,11 @@ public class King extends ChessPiece {
 	@Override
 	public String getPieceNameXMLTag() {
 		return XMLConstants.TAG_QUEEN;
+	}
+
+	@Override
+	public Integer getPieceValue() {
+		return 20;
 	}
 
 }
