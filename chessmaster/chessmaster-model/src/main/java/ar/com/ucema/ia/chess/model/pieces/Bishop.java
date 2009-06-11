@@ -25,6 +25,10 @@ public class Bishop extends ChessPiece {
 		return new Bishop(Color.Black);
 	}
 
+	@Override
+	public String toString() {
+		return this.getColor() + " Bishop";
+	}
 	
 	@Override
 	public boolean canMove(ChessBoard board) {

@@ -25,6 +25,12 @@ public class Queen extends ChessPiece {
 	}
 
 	@Override
+	public String toString() {
+		return this.getColor() + " Queen";
+	}
+
+	
+	@Override
 	public boolean canMove(ChessBoard board) {
 		return false;
 	}
