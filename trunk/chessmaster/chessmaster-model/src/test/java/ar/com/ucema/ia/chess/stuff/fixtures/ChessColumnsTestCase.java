@@ -1,7 +1,7 @@
 package ar.com.ucema.ia.chess.stuff.fixtures;
 
-import ar.com.ucema.ia.chess.model.ChessColumns;
 import junit.framework.TestCase;
+import ar.com.ucema.ia.chess.model.ChessColumns;
 
 public class ChessColumnsTestCase extends TestCase {
 	

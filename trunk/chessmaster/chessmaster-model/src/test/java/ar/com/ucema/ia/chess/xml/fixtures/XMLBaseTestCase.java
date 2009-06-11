@@ -28,7 +28,7 @@ public class XMLBaseTestCase extends TestCase {
 	
 	public void assertToXML(Element e, ChessPiece piece) {
 		assertNotNull(e);
-		assertEquals(piece.getPieceNameXMLTag(), e.getName());
+		assertEquals(piece.getPieceNameXMLTag(), e.attributeValue(XMLConstants.ATTRIBUTE_TYPE));
 		assertEquals(piece.getColor().toString(), e.attributeValue(XMLConstants.ATTRIBUTE_COLOR));
 		printDocument();
 	}

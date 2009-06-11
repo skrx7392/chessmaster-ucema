@@ -30,7 +30,7 @@ public class ChessCellParsingTestCase extends XMLBaseTestCase {
 		assertEquals(XMLConstants.TAG_CHESS_PIECE, e.getName());
 		assertEquals("A1", e.attributeValue(XMLConstants.ATTRIBUTE_COLUMN));
 		assertEquals(1, Integer.parseInt(e.attributeValue(XMLConstants.ATTRIBUTE_ROW)));
-		assertToXML(e.element(XMLConstants.TAG_PAWN), piece);
+		assertToXML(e, piece);
 		printDocument();
 	}
 

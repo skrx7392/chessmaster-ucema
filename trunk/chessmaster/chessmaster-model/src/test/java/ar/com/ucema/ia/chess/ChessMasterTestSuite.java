@@ -7,7 +7,6 @@ import ar.com.ucema.ia.chess.stuff.StuffTestSuite;
 import ar.com.ucema.ia.chess.xml.XMLParsingTestSuite;
 
 public class ChessMasterTestSuite {
-
 	
 	public static Test suite() {
 	    TestSuite suite = new TestSuite();
