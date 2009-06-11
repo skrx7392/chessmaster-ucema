@@ -1,7 +1,6 @@
 package ar.com.ucema.ia.chess.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.dom4j.Element;
@@ -16,7 +15,7 @@ import ar.com.ucema.ia.chess.model.xml.XMLConstants;
  * @author ejadib
  * @author Matías Suárez.
  */
-public class ChessBoard implements Parseable {
+public class ChessBoard implements Parseable, Cloneable {
 	private List<ChessCell> cells;
 
 	public ChessBoard() {
@@ -209,9 +208,25 @@ public class ChessBoard implements Parseable {
 	}
 	
 	public ChessBoard clone() {
-		ChessBoard board = new ChessBoard();
-		Collections.copy(board.cells, this.cells);
-		return board;
+		ChessBoard copiedBoard = new ChessBoard(true); // crea un board vacio
+		List<ChessCell> chessCells = this.getChessCellsWithPieces();
+		
+		// se q cada una de estos cells tiene una pieza
+		for (ChessCell chessCell : chessCells) {
+			copiedBoard.setPieceAt(chessCell.getColumn(), chessCell.getRow(), chessCell.getPiece());
+		}
+		
+		return copiedBoard;
+	}
+
+	public List<ChessCell> getChessCellsWithPieces() {
+		List<ChessCell> chessCells = new ArrayList<ChessCell>();
+
+		for (ChessCell chessCell : this.cells) {
+			if ( chessCell.getPiece() != null )
+				chessCells.add(chessCell);
+		}
+		return chessCells;
 	}
 
 	public Boolean moveWithThis(ChessMovement move) {
@@ -233,7 +248,7 @@ public class ChessBoard implements Parseable {
 	}
 	
 	
-	public List<ChessPiece> getChessCellsWithColor(Color color) {
+	public List<ChessPiece> getChessPiecesWithColor(Color color) {
 		List<ChessPiece> list = new ArrayList<ChessPiece>();
 		for (ChessCell chessCell : this.cells) {
 			if ( chessCell.getPiece() != null && chessCell.getPiece().getColor().equals(color))
@@ -243,5 +258,9 @@ public class ChessBoard implements Parseable {
 	}
 
 
-
+	public List<BlackPieceChessMovement> getAllPosibleBlackPiecesMovements() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

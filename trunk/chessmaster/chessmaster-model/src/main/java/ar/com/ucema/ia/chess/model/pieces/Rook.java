@@ -19,6 +19,10 @@ public class Rook extends ChessPiece {
 		return new Rook(Color.Black);
 	}
 
+	@Override
+	public String toString() {
+		return this.getColor() + " Rook";
+	}
 	
 	@Override
 	public boolean canMove(ChessBoard board) {

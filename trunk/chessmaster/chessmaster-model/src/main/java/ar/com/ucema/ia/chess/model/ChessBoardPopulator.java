@@ -24,9 +24,9 @@ public class ChessBoardPopulator {
 	 */
 	public void populateBoard(ChessBoard board) {
 		createOtherPiecesFromColorToEntireRown(Color.White, board.getChessCellRow(1));
+		createOtherPiecesFromColorToEntireRown(Color.Black, board.getChessCellRow(8));
 		createPawnsFromColorToEntireRown(Color.White, board.getChessCellRow(2));
 		createPawnsFromColorToEntireRown(Color.Black, board.getChessCellRow(7));
-		createOtherPiecesFromColorToEntireRown(Color.White, board.getChessCellRow(8));
 	}
 	
 	private void createPawnsFromColorToEntireRown(Color color, List<ChessCell> entireRow) {

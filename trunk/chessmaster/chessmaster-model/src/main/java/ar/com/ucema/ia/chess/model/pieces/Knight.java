@@ -20,6 +20,10 @@ public class Knight extends ChessPiece {
 		return new Knight(Color.Black);
 	}
 
+	@Override
+	public String toString() {
+		return this.getColor() + " Knight";
+	}
 	
 	@Override
 	public boolean canMove(ChessBoard board) {
