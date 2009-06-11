@@ -14,6 +14,6 @@ public interface ChessXMLService {
 	public Document playWhite(ChessPlay play);
 	
 	
-	public Document playBlack(ChessPlay play);
+//	public Document playBlack(ChessPlay play);
 	
 }

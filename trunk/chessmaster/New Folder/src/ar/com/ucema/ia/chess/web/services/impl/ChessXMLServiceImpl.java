@@ -20,11 +20,11 @@ public class ChessXMLServiceImpl implements ChessXMLService {
 		return game.toXML();
 	}
 
-	public Document playBlack(ChessPlay play) {
-		ChessGame game = ChessGame.getInstance();
-		game.playBlack();
-		return game.toXML();
-	}
+//	public Document playBlack(ChessPlay play) {
+//		ChessGame game = ChessGame.getInstance();
+//		game.playBlack();
+//		return game.toXML();
+//	}
 	
 
 }

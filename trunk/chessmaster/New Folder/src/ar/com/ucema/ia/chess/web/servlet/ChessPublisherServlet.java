@@ -35,7 +35,6 @@ public class ChessPublisherServlet extends HttpServlet {
 		play.setRowFrom(new Integer(getRowFrom(from)));
 		play.setRowTo(new Integer(getRowFrom(to)));
 		
-		response.addHeader("Content-Disposition", "outline;filename=board.xml");
 		response.setContentType("text/xml");
 
 		Document doc = service.playWhite(play);
