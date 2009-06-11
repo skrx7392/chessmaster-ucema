@@ -20,5 +20,12 @@ public enum Color {
 	public String toString() {
 		return colorAsString;
 	};
+	
+	public Color negate() {
+		if ( this.equals(Color.White) )
+			return Color.Black;
+		else
+			return Color.White;
+	}
 
 }

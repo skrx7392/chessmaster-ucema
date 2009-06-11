@@ -1,7 +1,6 @@
 package ar.com.ucema.ia.chess.model.pieces;
 
 import ar.com.ucema.ia.chess.model.ChessBoard;
-import ar.com.ucema.ia.chess.model.ChessCell;
 import ar.com.ucema.ia.chess.model.ChessMovement;
 import ar.com.ucema.ia.chess.model.Color;
 import ar.com.ucema.ia.chess.model.xml.XMLConstants;
@@ -12,13 +11,17 @@ public class Rook extends ChessPiece {
 		super(color);
 	}
 
-	@Override
-	public boolean canMove(ChessBoard board) {
-		return false;
+	public static Rook createBlackRook() {
+		return new Rook(Color.Black);
 	}
 
+	public static Rook createWhiteRook() {
+		return new Rook(Color.Black);
+	}
+
+	
 	@Override
-	public boolean eat(ChessCell to) {
+	public boolean canMove(ChessBoard board) {
 		return false;
 	}
 
@@ -60,6 +63,11 @@ public class Rook extends ChessPiece {
 	@Override
 	public String getPieceNameXMLTag() {
 		return XMLConstants.TAG_ROOK;
+	}
+
+	@Override
+	public Integer getPieceValue() {
+		return 10;
 	}
 
 }

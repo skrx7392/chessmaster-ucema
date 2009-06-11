@@ -87,11 +87,6 @@ public class ChessCell implements Parseable {
 		return true;
 	}
 
-	public Object fromXML(Element e) {
-		// TODO implementar hidratacion a xml
-		return null;
-	}
-
 	public Element toXML(Element root) {
 		Element e = root.addElement(XMLConstants.TAG_CHESS_PIECE)
 							.addAttribute(XMLConstants.ATTRIBUTE_COLUMN, column)
