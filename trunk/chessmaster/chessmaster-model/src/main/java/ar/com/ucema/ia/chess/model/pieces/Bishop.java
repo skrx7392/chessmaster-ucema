@@ -1,6 +1,11 @@
 package ar.com.ucema.ia.chess.model.pieces;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import ar.com.ucema.ia.chess.model.BlackPieceChessMovement;
 import ar.com.ucema.ia.chess.model.ChessBoard;
+import ar.com.ucema.ia.chess.model.ChessCell;
 import ar.com.ucema.ia.chess.model.ChessColumns;
 import ar.com.ucema.ia.chess.model.ChessMovement;
 import ar.com.ucema.ia.chess.model.Color;
@@ -71,4 +76,46 @@ public class Bishop extends ChessPiece {
 		return 12;
 	}
 
+	@Override
+	public List<ChessMovement> getBlackPossibleMovements(ChessCell currentCell) {
+		List<ChessMovement> list = new ArrayList<ChessMovement>();
+		list.addAll(getDiagonalMovements(currentCell));
+		return list;
+	}
+
+	protected List<ChessMovement> getDiagonalMovements(ChessCell currentCell) {
+		List<ChessMovement> list = new ArrayList<ChessMovement>();
+		ChessColumns columns = new ChessColumns();
+		int columnNumber = columns.getColumnNumber(currentCell.getColumn()); 
+		int positiveRowMoves = 1;
+		int negativeRowMoves = -1;
+		
+		for (int i = (columnNumber+1); i <= ChessBoard.MAX_ROWS; i++) {
+			// verifico que no se vaya de rango.
+			if ( (currentCell.getRow() + positiveRowMoves) <= ChessBoard.MAX_ROWS)
+				list.add(new BlackPieceChessMovement(currentCell, new ChessCell(columns.addPositionToColumn(currentCell.getColumn(), positiveRowMoves), currentCell.getRow() + positiveRowMoves, this)));
+			
+			if ( (currentCell.getRow() - positiveRowMoves) > 0)
+				list.add(new BlackPieceChessMovement(currentCell, new ChessCell(columns.addPositionToColumn(currentCell.getColumn(), positiveRowMoves), currentCell.getRow() - positiveRowMoves, this)));
+			positiveRowMoves++;
+		}
+		
+		for (int i = (columnNumber-1); i > 0; i--) {
+			String a = columns.addPositionToColumn(currentCell.getColumn(), negativeRowMoves);
+			System.out.println(a);
+			
+			// verifico que no se vaya de rango.
+			if ( (currentCell.getRow() + negativeRowMoves) > 0)  
+				list.add(new BlackPieceChessMovement(currentCell, new ChessCell(columns.addPositionToColumn(currentCell.getColumn(), negativeRowMoves), currentCell.getRow() + negativeRowMoves, this)));
+			
+			if ( (currentCell.getRow() - negativeRowMoves) <= ChessBoard.MAX_ROWS)
+				list.add(new BlackPieceChessMovement(currentCell, new ChessCell(columns.addPositionToColumn(currentCell.getColumn(), negativeRowMoves), currentCell.getRow() - negativeRowMoves, this)));
+			
+			negativeRowMoves--;
+		}
+		
+		return list;
+	}
+	
+	
 }

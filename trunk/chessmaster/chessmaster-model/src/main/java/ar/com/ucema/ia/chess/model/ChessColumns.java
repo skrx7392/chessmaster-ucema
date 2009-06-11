@@ -33,8 +33,8 @@ public class ChessColumns {
 		PositionAssociation asoc = getPositionByName(column);
 		int columnNumber = asoc.columnNumber + positions;
 		
-		if ( columnNumber >= 8 || columnNumber <= 0)
-			return column;
+		if ( columnNumber >= 8 ) return H;
+		if ( columnNumber <= 0) return A;
 			
 		return getPositionByNumber(columnNumber).columnName;
 	}

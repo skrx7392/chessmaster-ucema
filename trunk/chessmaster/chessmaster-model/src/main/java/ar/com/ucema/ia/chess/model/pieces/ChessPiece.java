@@ -1,8 +1,12 @@
 package ar.com.ucema.ia.chess.model.pieces;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.dom4j.Element;
 
 import ar.com.ucema.ia.chess.model.ChessBoard;
+import ar.com.ucema.ia.chess.model.ChessCell;
 import ar.com.ucema.ia.chess.model.ChessMovement;
 import ar.com.ucema.ia.chess.model.Color;
 import ar.com.ucema.ia.chess.model.Parseable;
@@ -58,11 +62,36 @@ public abstract class ChessPiece implements Parseable {
 
 	}
 
-	private boolean canEat(ChessMovement move) {
+	protected boolean canEat(ChessMovement move) {
 		return move.getBoard().getChessCellAt(move.getTo()).getPiece() != null;
 	}
 
+	
+	public List<ChessMovement> getPossibleMovements(ChessCell currentCell) {
+		if ( this.color.equals(Color.Black) )
+			return getBlackPossibleMovements(currentCell);
+		else
+			return getWhitePossibleMovements(currentCell);
+	}
 
+	/**
+	 * Intended to be overriden
+	 * @param currentCell the current cell
+	 */
+	public List<ChessMovement> getWhitePossibleMovements(ChessCell currentCell) {
+		return new ArrayList<ChessMovement>();
+	}
+	
+
+	/**
+	 * Intended to be overriden
+	 * @param currentCell the current cell
+	 */
+	public List<ChessMovement> getBlackPossibleMovements(ChessCell currentCell) {
+		return new ArrayList<ChessMovement>();
+	}
+	
+	
 	/**
 	 * Checks if the piece can do any movement within the board.
 	 * @param board the chess board.
@@ -70,7 +99,7 @@ public abstract class ChessPiece implements Parseable {
 	 */
 	public abstract boolean canMove(ChessBoard board);
 	
-
+	
 	/**
 	 * Obtiene el valor de una pieza para el juego
 	 * 
@@ -94,7 +123,7 @@ public abstract class ChessPiece implements Parseable {
 		return color;
 	}
 
-	private void setColor(Color color) {
+	protected void setColor(Color color) {
 		this.color = color;
 	}
 
