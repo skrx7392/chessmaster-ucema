@@ -1,6 +1,11 @@
 package ar.com.ucema.ia.chess.model.pieces;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import ar.com.ucema.ia.chess.model.BlackPieceChessMovement;
 import ar.com.ucema.ia.chess.model.ChessBoard;
+import ar.com.ucema.ia.chess.model.ChessCell;
 import ar.com.ucema.ia.chess.model.ChessColumns;
 import ar.com.ucema.ia.chess.model.ChessMovement;
 import ar.com.ucema.ia.chess.model.Color;
@@ -142,6 +147,19 @@ public class Pawn extends ChessPiece {
 	@Override
 	public Integer getPieceValue() {
 		return 1;
+	}
+
+	@Override
+	public List<ChessMovement> getBlackPossibleMovements(ChessCell currentCell) {
+		List<ChessMovement> list = new ArrayList<ChessMovement>();
+		ChessColumns columns = new ChessColumns();
+		
+		list.add(new BlackPieceChessMovement(currentCell, new ChessCell(columns.addPositionToColumn(currentCell.getColumn(), -1), currentCell.getRow() + 1, this)));
+		list.add(new BlackPieceChessMovement(currentCell, new ChessCell(columns.addPositionToColumn(currentCell.getColumn(), 1), currentCell.getRow() + 1, this)));
+		list.add(new BlackPieceChessMovement(currentCell, new ChessCell(currentCell.getColumn(), currentCell.getRow() + 1, this)));
+		list.add(new BlackPieceChessMovement(currentCell, new ChessCell(currentCell.getColumn(), currentCell.getRow() + 2, this)));
+		
+		return list;
 	}
 
 }

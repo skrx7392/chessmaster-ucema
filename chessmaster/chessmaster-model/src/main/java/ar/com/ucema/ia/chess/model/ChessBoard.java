@@ -16,6 +16,8 @@ import ar.com.ucema.ia.chess.model.xml.XMLConstants;
  * @author Matías Suárez.
  */
 public class ChessBoard implements Parseable, Cloneable {
+	public static final int MAX_ROWS = 8;
+	public static final int MAX_COLS = 8;
 	private List<ChessCell> cells;
 
 	public ChessBoard() {
@@ -229,6 +231,17 @@ public class ChessBoard implements Parseable, Cloneable {
 		return chessCells;
 	}
 
+	public List<ChessCell> getChessCellsWithPiecesAndColor(Color color) {
+		List<ChessCell> chessCells = new ArrayList<ChessCell>();
+
+		for (ChessCell chessCell : this.cells) {
+			if ( chessCell.getPiece() != null && chessCell.getPiece().equals(color) )
+				chessCells.add(chessCell);
+		}
+		return chessCells;
+	}
+
+	
 	public Boolean moveWithThis(ChessMovement move) {
 		ChessPiece chessPiece = this.getChessCellAt(move.getTo()).getPiece();
 		
@@ -258,9 +271,17 @@ public class ChessBoard implements Parseable, Cloneable {
 	}
 
 
+	@SuppressWarnings("unchecked")
 	public List<BlackPieceChessMovement> getAllPosibleBlackPiecesMovements() {
-		// TODO Auto-generated method stub
-		return null;
+		List<ChessCell> chessCells = getChessCellsWithPiecesAndColor(Color.Black);
+		List<BlackPieceChessMovement> movements = new ArrayList<BlackPieceChessMovement>();
+		
+		for (ChessCell aCell : chessCells) {
+			List blackPossibleMovements = aCell.getPiece().getBlackPossibleMovements(aCell);
+			movements.addAll(blackPossibleMovements);
+		}
+		
+		return movements;
 	}
 	
 }
