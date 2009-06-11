@@ -73,16 +73,18 @@ public class King extends ChessPiece {
 		List<ChessMovement> list = new ArrayList<ChessMovement>();
 		ChessColumns columns = new ChessColumns();
 		
-		// movimientos diagonales
-		list.add(new BlackPieceChessMovement(currentCell, new ChessCell(columns.addPositionToColumn(currentCell.getColumn(), 1),  currentCell.getRow() + 1, this)));
-		list.add(new BlackPieceChessMovement(currentCell, new ChessCell(columns.addPositionToColumn(currentCell.getColumn(), 1),  currentCell.getRow() - 1, this)));
-		list.add(new BlackPieceChessMovement(currentCell, new ChessCell(columns.addPositionToColumn(currentCell.getColumn(), -1), currentCell.getRow() + 1, this)));
-		list.add(new BlackPieceChessMovement(currentCell, new ChessCell(columns.addPositionToColumn(currentCell.getColumn(), -1), currentCell.getRow() - 1, this)));
+		if ( (currentCell.getRow() + 1) <= ChessBoard.MAX_ROWS ) {
+			list.add(new BlackPieceChessMovement(currentCell, new ChessCell(columns.addPositionToColumn(currentCell.getColumn(), 1),  currentCell.getRow() + 1, this)));
+			list.add(new BlackPieceChessMovement(currentCell, new ChessCell(columns.addPositionToColumn(currentCell.getColumn(), -1), currentCell.getRow() + 1, this)));
+			list.add(new BlackPieceChessMovement(currentCell, new ChessCell(currentCell.getColumn(), currentCell.getRow() + 1, this)));
+		}
 
-		// movimientos verticales
-		list.add(new BlackPieceChessMovement(currentCell, new ChessCell(currentCell.getColumn(), currentCell.getRow() + 1, this)));
-		list.add(new BlackPieceChessMovement(currentCell, new ChessCell(currentCell.getColumn(), currentCell.getRow() - 1, this)));
-		
+		if ( (currentCell.getRow() - 1) > 0 ) {
+			list.add(new BlackPieceChessMovement(currentCell, new ChessCell(columns.addPositionToColumn(currentCell.getColumn(), 1),  currentCell.getRow() - 1, this)));
+			list.add(new BlackPieceChessMovement(currentCell, new ChessCell(columns.addPositionToColumn(currentCell.getColumn(), -1), currentCell.getRow() - 1, this)));
+			list.add(new BlackPieceChessMovement(currentCell, new ChessCell(currentCell.getColumn(), currentCell.getRow() - 1, this)));
+		}
+
 		// movimientos horizontales
 		list.add(new BlackPieceChessMovement(currentCell, new ChessCell(columns.addPositionToColumn(currentCell.getColumn(), -1), currentCell.getRow(), this)));
 		list.add(new BlackPieceChessMovement(currentCell, new ChessCell(columns.addPositionToColumn(currentCell.getColumn(), 1), currentCell.getRow(), this)));
