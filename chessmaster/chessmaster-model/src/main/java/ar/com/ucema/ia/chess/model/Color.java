@@ -17,6 +17,7 @@ public enum Color {
 		this.colorAsString = colorAsString;
 	}
 
+	
 	public String toString() {
 		return colorAsString;
 	};
@@ -27,5 +28,17 @@ public enum Color {
 		else
 			return Color.White;
 	}
+
+
+	public String getColorAsString() {
+		return colorAsString;
+	}
+
+
+	public void setColorAsString(String colorAsString) {
+		this.colorAsString = colorAsString;
+	}
+	
+	
 
 }
