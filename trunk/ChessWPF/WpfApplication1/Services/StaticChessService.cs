@@ -31,13 +31,20 @@ namespace WpfApplication1.Services
 
             client.DownloadStringCompleted += (sender, e) =>
             {
-                if (e.Error == null && !e.Cancelled)
+                if (!e.Cancelled)
                 {
-                    StringReader reader = new StringReader(e.Result);
-                    XDocument document = XDocument.Load(reader);
-                    Board board = this.ParseBoard(document);
+                    if (e.Error == null)
+                    {
+                        StringReader reader = new StringReader(e.Result);
+                        XDocument document = XDocument.Load(reader);
+                        Board board = this.ParseBoard(document);
 
-                    this.OnMoveCompleted(board);
+                        this.OnMoveCompleted(board);
+                    }
+                    else
+                    {
+                        this.OnMoveCompleted(e.Error);
+                    }
                 }
             };
 
@@ -147,6 +154,24 @@ namespace WpfApplication1.Services
             if (completed != null)
             {
                 completed(this, new BoardEventArgs(board));
+            }
+        }
+
+        private void OnMoveCompleted(Exception exception)
+        {
+            EventHandler<BoardEventArgs> completed = this.MoveCompleted;
+            if (completed != null)
+            {
+                completed(this, new BoardEventArgs(exception));
+            }
+        }
+
+        private void OnResetCompleted(Exception exception)
+        {
+            EventHandler<BoardEventArgs> completed = this.ResetCompleted;
+            if (completed != null)
+            {
+                completed(this, new BoardEventArgs(exception));
             }
         }
     }
