@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<game>
+  <chessBoard>
+    <chessPiece column="A" row="1">
+      <rook color="white"/>
+    </chessPiece>
+    <chessPiece column="A" row="2">
+      <pawn color="white"/>
+    </chessPiece>
+    <chessPiece column="A" row="3"/>
+    <chessPiece column="A" row="4"/>
+    <chessPiece column="A" row="5"/>
+    <chessPiece column="A" row="6"/>
+    <chessPiece column="A" row="7">
+      <pawn color="black"/>
+    </chessPiece>
+    <chessPiece column="A" row="8">
+      <rook color="white"/>
+    </chessPiece>
+    <chessPiece column="B" row="1">
+      <knight color="white"/>
+    </chessPiece>
+    <chessPiece column="B" row="2">
+      <pawn color="white"/>
+    </chessPiece>
+    <chessPiece column="B" row="3"/>
+    <chessPiece column="B" row="4"/>
+    <chessPiece column="B" row="5"/>
+    <chessPiece column="B" row="6"/>
+    <chessPiece column="B" row="7">
+      <pawn color="black"/>
+    </chessPiece>
+    <chessPiece column="B" row="8">
+      <knight color="white"/>
+    </chessPiece>
+    <chessPiece column="C" row="1">
+      <bishop color="white"/>
+    </chessPiece>
+    <chessPiece column="C" row="2">
+      <pawn color="white"/>
+    </chessPiece>
+    <chessPiece column="C" row="3"/>
+    <chessPiece column="C" row="4"/>
+    <chessPiece column="C" row="5"/>
+    <chessPiece column="C" row="6"/>
+    <chessPiece column="C" row="7">
+      <pawn color="black"/>
+    </chessPiece>
+    <chessPiece column="C" row="8">
+      <bishop color="white"/>
+    </chessPiece>
+    <chessPiece column="D" row="1">
+      <queen color="white"/>
+    </chessPiece>
+    <chessPiece column="D" row="2">
+      <pawn color="white"/>
+    </chessPiece>
+    <chessPiece column="D" row="3"/>
+    <chessPiece column="D" row="4"/>
+    <chessPiece column="D" row="5"/>
+    <chessPiece column="D" row="6"/>
+    <chessPiece column="D" row="7">
+      <pawn color="black"/>
+    </chessPiece>
+    <chessPiece column="D" row="8">
+      <queen color="white"/>
+    </chessPiece>
+    <chessPiece column="E" row="1">
+      <queen color="white"/>
+    </chessPiece>
+    <chessPiece column="E" row="2">
+      <pawn color="white"/>
+    </chessPiece>
+    <chessPiece column="E" row="3"/>
+    <chessPiece column="E" row="4"/>
+    <chessPiece column="E" row="5"/>
+    <chessPiece column="E" row="6"/>
+    <chessPiece column="E" row="7">
+      <pawn color="black"/>
+    </chessPiece>
+    <chessPiece column="E" row="8">
+      <queen color="white"/>
+    </chessPiece>
+    <chessPiece column="F" row="1">
+      <bishop color="white"/>
+    </chessPiece>
+    <chessPiece column="F" row="2">
+      <pawn color="white"/>
+    </chessPiece>
+    <chessPiece column="F" row="3"/>
+    <chessPiece column="F" row="4"/>
+    <chessPiece column="F" row="5"/>
+    <chessPiece column="F" row="6"/>
+    <chessPiece column="F" row="7">
+      <pawn color="black"/>
+    </chessPiece>
+    <chessPiece column="F" row="8">
+      <bishop color="white"/>
+    </chessPiece>
+    <chessPiece column="G" row="1">
+      <knight color="white"/>
+    </chessPiece>
+    <chessPiece column="G" row="2">
+      <pawn color="white"/>
+    </chessPiece>
+    <chessPiece column="G" row="3"/>
+    <chessPiece column="G" row="4"/>
+    <chessPiece column="G" row="5"/>
+    <chessPiece column="G" row="6"/>
+    <chessPiece column="G" row="7">
+      <pawn color="black"/>
+    </chessPiece>
+    <chessPiece column="G" row="8">
+      <knight color="white"/>
+    </chessPiece>
+    <chessPiece column="H" row="1">
+      <rook color="white"/>
+    </chessPiece>
+    <chessPiece column="H" row="2">
+      <pawn color="white"/>
+    </chessPiece>
+    <chessPiece column="H" row="3"/>
+    <chessPiece column="H" row="4"/>
+    <chessPiece column="H" row="5"/>
+    <chessPiece column="H" row="6"/>
+    <chessPiece column="H" row="7">
+      <pawn color="black"/>
+    </chessPiece>
+    <chessPiece column="H" row="8">
+      <rook color="white"/>
+    </chessPiece>
+  </chessBoard>
+</game>
