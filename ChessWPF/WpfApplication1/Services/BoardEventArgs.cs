@@ -10,6 +10,13 @@ namespace WpfApplication1.Services
             this.Board = board;
         }
 
+        public BoardEventArgs(Exception exception)
+        {
+            this.Error = exception;
+        }
+
         public Board Board { get; private set; }
+
+        public Exception Error { get; private set; }
     }
 }

@@ -12,11 +12,18 @@
         {
             this.chessService = chessService;
             this.chessService.MoveCompleted += this.ChessService_MoveCompleted;
-            this.chessService.ResetCompleted += (sender, e) => this.View.DrawBoard(e.Board);
+            this.chessService.ResetCompleted += (sender, e) =>
+                                                    {
+                                                        if (e.Error == null)
+                                                        {
+                                                            this.View.DrawBoard(e.Board);
+                                                        }
+                                                    };
 
             this.View = chessboard;
 
             this.View.Model = this;
+            this.Reset();
         }
 
         public ChessBoard View { get; private set; }
@@ -34,6 +41,10 @@
                 string newPosition = String.Concat(ColumnToLetter(newColumn), Math.Abs(8 - newRow));
                 this.lastMoveWasMadeByHuman = true;
                 this.chessService.MoveAsync(actualPosition, newPosition);
+            }
+            else
+            {
+                this.chessService.MoveAsync(null, null);
             }
         }
 
@@ -64,12 +75,15 @@
 
         private void ChessService_MoveCompleted(object sender, BoardEventArgs e)
         {
-            this.View.DrawBoard(e.Board);
-
-            if (this.lastMoveWasMadeByHuman)
+            if (e.Error == null)
             {
-                this.lastMoveWasMadeByHuman = false;
-                this.chessService.MoveAsync(null, null);
+                this.View.DrawBoard(e.Board);
+
+                if (this.lastMoveWasMadeByHuman)
+                {
+                    this.lastMoveWasMadeByHuman = false;
+                    this.chessService.MoveAsync(null, null);
+                }
             }
         }
     }
