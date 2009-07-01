@@ -39,8 +39,11 @@
             {
                 string actualPosition = String.Concat(ColumnToLetter(actualColumn), Math.Abs(8 - actualRow));
                 string newPosition = String.Concat(ColumnToLetter(newColumn), Math.Abs(8 - newRow));
-                this.lastMoveWasMadeByHuman = true;
-                this.chessService.MoveAsync(actualPosition, newPosition);
+                if (!actualPosition.Equals(newPosition))
+                {
+                    this.lastMoveWasMadeByHuman = true;
+                    this.chessService.MoveAsync(actualPosition, newPosition);
+                }
             }
             else
             {
