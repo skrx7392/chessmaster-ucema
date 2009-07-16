@@ -1,0 +1,1 @@
+package ar.com.ucema.ia.chess.game;import junit.framework.TestCase;import ar.com.ucema.ia.chess.model.ChessGame;public class IAMovesTestCase extends TestCase {			public void testIAMove() {		ChessGame.getInstance().playBlackReleoded();	}	}

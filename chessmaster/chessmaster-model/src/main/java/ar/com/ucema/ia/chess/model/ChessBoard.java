@@ -241,6 +241,10 @@ public class ChessBoard implements Parseable, Cloneable {
 		return chessCells;
 	}
 
+	public Boolean isValidMovement(ChessMovement move) {
+		ChessPiece chessPiece = this.getChessCellAt(move.getFrom()).getPiece();
+		return chessPiece.isValidMove(move);
+	}
 	
 	public Boolean moveWithThis(ChessMovement move) {
 		ChessPiece chessPiece = this.getChessCellAt(move.getFrom()).getPiece();

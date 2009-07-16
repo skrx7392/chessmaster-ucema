@@ -13,7 +13,7 @@ import ar.com.ucema.ia.chess.model.pieces.Rook;
 /**
  * It populates the board with all the pieces
  * All white pieces are supposed to be in rows both 1 and 2 at the match start and black pieces at rows 7 and 8 
- * @author Matías Suárez
+ * @author Matï¿½as Suï¿½rez
  */
 public class ChessBoardPopulator {
 
@@ -47,10 +47,10 @@ public class ChessBoardPopulator {
 				aCell.setPiece(new Bishop(color));
 
 			if ( aCell.getColumn().equals(ChessColumns.D) )
-				aCell.setPiece(new King(color));
+				aCell.setPiece(new Queen(color));
 
 			if ( aCell.getColumn().equals(ChessColumns.E) )
-				aCell.setPiece(new Queen(color));
+				aCell.setPiece(new King(color));
 		}
 	}
 }

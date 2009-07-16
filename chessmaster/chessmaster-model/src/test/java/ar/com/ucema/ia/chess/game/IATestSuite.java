@@ -1,0 +1,1 @@
+package ar.com.ucema.ia.chess.game;import junit.framework.Test;import junit.framework.TestSuite;public class IATestSuite {		public static Test suite() {	    TestSuite suite = new TestSuite();	    suite.addTestSuite(IAMovesTestCase.class);	    return suite;	}}

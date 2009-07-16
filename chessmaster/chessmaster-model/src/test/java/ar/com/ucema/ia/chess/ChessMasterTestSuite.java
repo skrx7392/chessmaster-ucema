@@ -2,6 +2,7 @@ package ar.com.ucema.ia.chess;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
+import ar.com.ucema.ia.chess.game.IATestSuite;
 import ar.com.ucema.ia.chess.movement.ChessMovementTestSuite;
 import ar.com.ucema.ia.chess.stuff.StuffTestSuite;
 import ar.com.ucema.ia.chess.xml.XMLParsingTestSuite;
@@ -13,6 +14,7 @@ public class ChessMasterTestSuite {
 	    suite.addTest(XMLParsingTestSuite.suite());
 	    suite.addTest(ChessMovementTestSuite.suite());
 	    suite.addTest(StuffTestSuite.suite());
+	    suite.addTest(IATestSuite.suite());
 	    return suite;
 	}
 }
