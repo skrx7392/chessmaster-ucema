@@ -48,8 +48,8 @@ public class Queen extends ChessPiece {
 
 		// analizo el movimiento por diagonales
 		ChessColumns columns = new ChessColumns();
-		int hMovement = Math.abs(move.getFrom().getRow() - move.getTo().getRow());
-		int vMovement = Math.abs(columns.getColumnNumber(move.getFrom().getColumn()) - columns.getColumnNumber(move.getTo().getColumn()));
+		int vMovement = Math.abs(move.getFrom().getRow() - move.getTo().getRow());
+		int hMovement = Math.abs(columns.getColumnNumber(move.getFrom().getColumn()) - columns.getColumnNumber(move.getTo().getColumn()));
 		
 		// verifico que no se quiera mover en forma diagonal.
 		if (hMovement == vMovement ) {
@@ -74,11 +74,11 @@ public class Queen extends ChessPiece {
 	}
 
 	private Boolean movedByColumn(ChessMovement move) {
-		return (move.getFrom().getColumn().equals(move.getTo().getColumn()));
+		return (move.getFrom().getRow().equals(move.getTo().getRow()));
 	}
 
 	private Boolean movedByRow(ChessMovement move) {
-		return (move.getFrom().getRow().equals(move.getTo().getRow()));
+		return (move.getFrom().getColumn().equals(move.getTo().getColumn()));
 	}
 
 	@Override

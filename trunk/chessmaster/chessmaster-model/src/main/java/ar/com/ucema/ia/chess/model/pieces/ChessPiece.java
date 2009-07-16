@@ -52,13 +52,9 @@ public abstract class ChessPiece implements Parseable {
 	 * @param move the piece that is about to eat.
 	 */
 	public boolean move(ChessMovement move) {
-		if ( canEat(move) ) {
-			move.getBoard().getChessCellAt(move.getFrom()).setPiece(null);
-			move.getBoard().getChessCellAt(move.getTo()).setPiece(this);
-			return true;
-		}
-		
-		return false;
+		move.getBoard().getChessCellAt(move.getFrom()).setPiece(null);
+		move.getBoard().getChessCellAt(move.getTo()).setPiece(this);
+		return true;
 
 	}
 

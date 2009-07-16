@@ -59,7 +59,7 @@ public class King extends ChessPiece {
 
 	@Override
 	public String getPieceNameXMLTag() {
-		return XMLConstants.TAG_QUEEN;
+		return XMLConstants.TAG_KING;
 	}
 
 	@Override
