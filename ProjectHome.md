@@ -1,0 +1,1 @@
+Un ajedrez en una version 2.0 para la materia inteligencia artificial del CEMA año 2009.
